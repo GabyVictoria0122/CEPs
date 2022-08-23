@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Buscador de CEP</title>
+</head>
+
+<body>
+  <form action="" method="POST">
+    {% csrf_token %}
+    Cep:<input id="cep" type="text" name="cep" onfocusout="exibeResultado()" />
+    Rua:<input id="rua" type="text" name="rua" />
+    Bairro:<input id="bairro" type="text" name="bairro" />
+    Cidade:<input id="cidade" type="text" name="cidade" />
+    <!-- <input type="submit" value="OK" /> -->
+    <div></div>
+  </form>
+</body>
+
+</html>
+<script>
+  let elRua = document.getElementById("rua");
+  let elBairro = document.getElementById("bairro");
+  let elCidade = document.getElementById("cidade");
+
+  function exibeResultado() {
+    fetch("/cep/11714140")
+      .then((response) => {
+        console.log(typeof response);
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+
+        elRua.value = data.rua
+        elBairro.value = data.bairro
+        elCidade.value = data.cidade
+      });
+
+  }
+</script>

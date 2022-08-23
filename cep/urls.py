@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('cep/<cep>', views.api_ceps, name="ceps"),
-    path('ola/', views.ola_ceps, name="olaceps"),
+    path('', views.ola_ceps, name="olaceps"),
 ]
